@@ -14,12 +14,12 @@ void WheelUpdate(OSCMessage& msg, int addressOffset) {
 
 void ChannelUpdate(OSCMessage& msg, int addressOffset) {
   tft.fillRect(0, 350, 400, 25, BLACK);
-  tft.setCursor(0, 250);
+  tft.setCursor(0, 350);
   tft.setTextSize(1);
   tft.print("CHANNEL TRIGGERED!");
 
   tft.fillRect(0, 400, 400, 25, BLACK);
-  tft.setCursor(0, 300);
+  tft.setCursor(0, 400);
   tft.setTextSize(1);
   char str[100];
   msg.getString(0, str);
