@@ -8,7 +8,21 @@ void WheelUpdate(OSCMessage& msg, int addressOffset) {
   tft.setCursor(0, 300);
   tft.setTextSize(1);
   char str[100];
-  msg.getString(4, str);
+  msg.getString(0, str);
+  tft.print(str);
+}
+
+void ChannelUpdate(OSCMessage& msg, int addressOffset) {
+  tft.fillRect(0, 350, 400, 25, BLACK);
+  tft.setCursor(0, 250);
+  tft.setTextSize(1);
+  tft.print("CHANNEL TRIGGERED!");
+
+  tft.fillRect(0, 400, 400, 25, BLACK);
+  tft.setCursor(0, 300);
+  tft.setTextSize(1);
+  char str[100];
+  msg.getString(0, str);
   tft.print(str);
 }
 
@@ -34,7 +48,7 @@ void parseOSCMessage(String& msg) {
   } else {
     OSCMessage oscmsg;
     oscmsg.fill((uint8_t*)msg.c_str(), (int)msg.length());
-    //oscmsg.route(EOS_CHAN_OUT.c_str(), ChannelUpdate);
+    oscmsg.route(EOS_CHAN_OUT.c_str(), ChannelUpdate);
     oscmsg.route(EOS_WHEEL_OUT.c_str(), WheelUpdate);
   }
 }
